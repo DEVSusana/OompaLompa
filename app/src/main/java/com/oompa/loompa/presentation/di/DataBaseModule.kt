@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DataBaseModule {
+object DataBaseModule {
     @Singleton
     @Provides
     fun provideNewsDatabase(app: Application): OompaLoompaDataBase {

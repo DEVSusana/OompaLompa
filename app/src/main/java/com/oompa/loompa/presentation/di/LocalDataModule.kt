@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class LocalDataModule {
+object LocalDataModule {
     @Singleton
     @Provides
     fun provideLocalDataSource(oompaLoompaDAO: OompaLoompaDAO):OompaLocalDataSource{

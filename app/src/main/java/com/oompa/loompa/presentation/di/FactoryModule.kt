@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class FactoryModule {
+object FactoryModule {
     @Singleton
     @Provides
     fun provideOompaViewModelFactory(

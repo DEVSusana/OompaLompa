@@ -1,5 +1,6 @@
 package com.oompa.loompa.view
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,26 +20,36 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.oompa.loompa.data.Utils.Resource
+import com.oompa.loompa.data.db.OompaLoompaDAO
 import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.domain.repository.OompaRepository
-import com.oompa.loompa.domain.usecase.DeleteListOompaUseCase
+import com.oompa.loompa.domain.usecase.*
 import com.oompa.loompa.presentation.viewModel.OompaViewModel
 import com.oompa.loompa.presentation.viewModel.OompaViewModelFactory
 import com.oompa.loompa.view.compose.OompaListItem
+import com.oompa.loompa.view.compose.displayOompaList
 import com.oompa.loompa.view.ui.theme.OompaLompaTheme
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     lateinit var viewModel: OompaViewModel
 
     @Inject
     lateinit var viewModelFactory: OompaViewModelFactory
+
+    @Inject
+    lateinit var repository: OompaRepository
+
+
     private lateinit var oompaList: List<OompaDetail>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(OompaViewModel::class.java)
+//        viewModelFactory = OompaViewModelFactory(Application(), DeleteListOompaUseCase(repository), GetDetailsOompaUseCase(repository), GetListOompaUseCase(repository), SaveDetailsOompaUseCase(repository), SaveListOompaUseCase(repository))
+        viewModel = ViewModelProvider(this, viewModelFactory)[OompaViewModel::class.java]
         viewModel.getOompaLoompaList(1)
         viewModel.getListOompa.observe(this, { response ->
             when (response) {
@@ -68,16 +79,3 @@ class MainActivity : ComponentActivity() {
 
 }
 
-@Composable
-fun displayOompaList(oompaList: List<OompaDetail>, selectedItem: (OompaDetail) -> Unit) {
-    LazyColumn(
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
-    ) {
-        items(
-            items = oompaList,
-            itemContent = {
-                OompaListItem(oompaDetail = it, selectedItem)
-            }
-        )
-    }
-}

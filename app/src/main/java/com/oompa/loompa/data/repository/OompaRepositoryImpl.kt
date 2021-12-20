@@ -8,8 +8,12 @@ import com.oompa.loompa.data.repository.dataSource.OompaRemoteDataSource
 import com.oompa.loompa.domain.repository.OompaRepository
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class OompaRepositoryImpl(
+
+
+class OompaRepositoryImpl @Inject constructor(
     private val oompaRemoteDataSource: OompaRemoteDataSource,
     private val oompaLocalDataSource: OompaLocalDataSource
 ): OompaRepository {
