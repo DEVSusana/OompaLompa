@@ -9,8 +9,6 @@ import com.oompa.loompa.domain.repository.OompaRepository
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import javax.inject.Inject
-import javax.inject.Singleton
-
 
 
 class OompaRepositoryImpl @Inject constructor(

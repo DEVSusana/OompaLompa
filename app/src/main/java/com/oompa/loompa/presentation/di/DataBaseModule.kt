@@ -13,16 +13,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DataBaseModule {
-    @Singleton
     @Provides
+    @Singleton
     fun provideNewsDatabase(app: Application): OompaLoompaDataBase {
         return Room.databaseBuilder(app, OompaLoompaDataBase::class.java, "oompa_db")
             .fallbackToDestructiveMigration()
             .build()
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideNewsDao(oompaLoompaDataBase: OompaLoompaDataBase): OompaLoompaDAO {
         return oompaLoompaDataBase.getOompaLoompaDAO()
     }

@@ -13,8 +13,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object FactoryModule {
-    @Singleton
     @Provides
+    @Singleton
     fun provideOompaViewModelFactory(
         application: Application,
         deleteListOompaUseCase: DeleteListOompaUseCase,

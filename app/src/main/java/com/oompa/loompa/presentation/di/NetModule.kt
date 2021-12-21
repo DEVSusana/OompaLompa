@@ -13,8 +13,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetModule{
-    @Singleton
     @Provides
+    @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -22,8 +22,8 @@ object NetModule{
             .build()
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideNewsAPIService(retrofit: Retrofit):OompaApiService{
         return retrofit.create(OompaApiService::class.java)
     }

@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideOompaRepository(
         oompaRemoteDataSource: OompaRemoteDataSource,
         oompaLocalDataSource: OompaLocalDataSource

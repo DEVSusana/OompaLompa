@@ -6,7 +6,9 @@ import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.data.repository.dataSource.OompaRemoteDataSource
 import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class OompaRemoteDataSourceImpl @Inject constructor(private val oompaApiService: OompaApiService):
     OompaRemoteDataSource {
     override suspend fun getOompaLoompaList(page: Int): Response<ApiResponse> {

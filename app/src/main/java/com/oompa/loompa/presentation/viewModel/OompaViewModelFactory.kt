@@ -15,14 +15,6 @@ class OompaViewModelFactory @Inject constructor(
     private val saveListOompaUseCase: SaveListOompaUseCase
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        return OompaViewModel(
-//            app,
-//            deleteListOompaUseCase,
-//            getDetailsOompaUseCase,
-//            getListOompaUseCase,
-//            saveDetailsOompaUseCase,
-//            saveListOompaUseCase
-//        ) as T
         return modelClass.getConstructor(
             Application::class.java,
             DeleteListOompaUseCase::class.java,
