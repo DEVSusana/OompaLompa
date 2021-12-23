@@ -15,7 +15,7 @@ import javax.inject.Singleton
 object DataBaseModule {
     @Provides
     @Singleton
-    fun provideNewsDatabase(app: Application): OompaLoompaDataBase {
+    fun provideOompaDatabase(app: Application): OompaLoompaDataBase {
         return Room.databaseBuilder(app, OompaLoompaDataBase::class.java, "oompa_db")
             .fallbackToDestructiveMigration()
             .build()
@@ -23,7 +23,7 @@ object DataBaseModule {
 
     @Provides
     @Singleton
-    fun provideNewsDao(oompaLoompaDataBase: OompaLoompaDataBase): OompaLoompaDAO {
+    fun provideOompaDao(oompaLoompaDataBase: OompaLoompaDataBase): OompaLoompaDAO {
         return oompaLoompaDataBase.getOompaLoompaDAO()
     }
 

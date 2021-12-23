@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "URL_BASE", "\"https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/\""
+
         vectorDrawables {
             useSupportLibrary true
         }
@@ -41,7 +43,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.5.30'
+        kotlinCompilerVersion '1.5.31'
     }
     packagingOptions {
         resources {

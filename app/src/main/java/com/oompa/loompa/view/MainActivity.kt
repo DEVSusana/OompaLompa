@@ -48,7 +48,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        viewModelFactory = OompaViewModelFactory(Application(), DeleteListOompaUseCase(repository), GetDetailsOompaUseCase(repository), GetListOompaUseCase(repository), SaveDetailsOompaUseCase(repository), SaveListOompaUseCase(repository))
         viewModel = ViewModelProvider(this, viewModelFactory)[OompaViewModel::class.java]
         viewModel.getOompaLoompaList(1)
         viewModel.getListOompa.observe(this, { response ->

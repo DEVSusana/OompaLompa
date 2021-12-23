@@ -18,13 +18,13 @@ object NetModule{
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas")
+            .baseUrl(BuildConfig.URL_BASE)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideNewsAPIService(retrofit: Retrofit):OompaApiService{
+    fun provideOompaAPIService(retrofit: Retrofit):OompaApiService{
         return retrofit.create(OompaApiService::class.java)
     }
 
