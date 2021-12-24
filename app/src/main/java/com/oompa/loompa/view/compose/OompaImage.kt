@@ -16,7 +16,7 @@ import coil.compose.rememberImagePainter
 import com.oompa.loompa.data.model.OompaDetail
 
 @Composable
-fun OompaImage(oompaDetail: OompaDetail) {
+fun oompaImage(oompaDetail: OompaDetail) {
     Image(
         painter = rememberImagePainter(
             oompaDetail.image),

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.oompa.loompa.data.model.OompaDetail
 
 @Composable
-fun OompaListItem(oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onClick: (Int) -> Unit){
+fun oompaListItem(oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onClick: (Int) -> Unit){
     val backgroundColor =
         if (index == selectedIndex) MaterialTheme.colors.primary else MaterialTheme.colors.background
     Card(
@@ -35,7 +35,7 @@ fun OompaListItem(oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onCl
                     .clickable { onClick(index) },
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                OompaImage(oompaDetail = oompaDetail)
+                oompaImage(oompaDetail = oompaDetail)
                 Column{
                     Text(text = oompaDetail.firstName, style = MaterialTheme.typography.h3)
                     Spacer(modifier = Modifier.height(4.dp))

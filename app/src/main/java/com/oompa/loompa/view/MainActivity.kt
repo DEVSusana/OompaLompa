@@ -1,35 +1,29 @@
 package com.oompa.loompa.view
 
-import android.app.Application
+
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Observer
+import androidx.compose.ui.Alignment
 import androidx.lifecycle.ViewModelProvider
 import com.oompa.loompa.data.Utils.Resource
-import com.oompa.loompa.data.db.OompaLoompaDAO
 import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.domain.repository.OompaRepository
 import com.oompa.loompa.domain.usecase.*
 import com.oompa.loompa.presentation.viewModel.OompaViewModel
 import com.oompa.loompa.presentation.viewModel.OompaViewModelFactory
-import com.oompa.loompa.view.compose.OompaListItem
 import com.oompa.loompa.view.compose.displayOompaList
-import com.oompa.loompa.view.ui.theme.OompaLompaTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.ui.Modifier
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -70,7 +64,9 @@ class MainActivity : ComponentActivity() {
                 }
 
                 is Resource.Loading -> {
-                    //CircularProgressIndicator()
+                   setContent {
+                       ShowProgressBar()
+                   }
                 }
 
             }
@@ -80,3 +76,14 @@ class MainActivity : ComponentActivity() {
 
 }
 
+
+@Composable
+fun ShowProgressBar() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
+    }
+}

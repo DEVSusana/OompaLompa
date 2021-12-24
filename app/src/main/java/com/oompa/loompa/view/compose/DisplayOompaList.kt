@@ -2,7 +2,6 @@ package com.oompa.loompa.view.compose
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
@@ -17,7 +16,7 @@ fun displayOompaList(oompaList: List<OompaDetail>) {
         itemsIndexed(
             items = oompaList
         ){ index, item ->  
-            OompaListItem(oompaDetail = item, index, selectedIndex){
+            oompaListItem(oompaDetail = item, index, selectedIndex){
                 i -> selectedIndex = i
             }
         }
