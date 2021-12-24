@@ -55,11 +55,17 @@ class MainActivity : ComponentActivity() {
                 is Resource.Success -> {
                     response.data?.let {
                         oompaList = response.data.results
+                        setContent {
+                            Surface(color = MaterialTheme.colors.background) {
+                                displayOompaList(oompaList = oompaList)
+                            }
+                        }
                     }
                 }
                 is Resource.Error -> {
                     response.message?.let {
                         Toast.makeText(this, "An error occurred : $it", Toast.LENGTH_LONG).show()
+                        Log.i("ERROR", it)
                     }
                 }
 
@@ -69,11 +75,7 @@ class MainActivity : ComponentActivity() {
 
             }
         })
-        setContent {
-            displayOompaList(oompaList = oompaList) {
 
-            }
-        }
     }
 
 }

@@ -12,13 +12,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.oompa.loompa.data.model.OompaDetail
 
 @Composable
 fun OompaImage(oompaDetail: OompaDetail) {
     Image(
-        painter = painterResource(
-            id = oompaDetail.image.toInt()),
+        painter = rememberImagePainter(
+            oompaDetail.image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier

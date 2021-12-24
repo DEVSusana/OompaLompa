@@ -8,13 +8,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface OompaApiService {
-    @GET("")
+    @GET("oompa-loompas?page=")
     suspend fun getOompaLoompaList(
         @Query("page")
         page:Int
     ): Response<ApiResponse>
 
-    @GET("/{id}")
+    @GET("oompa-loompas/{id}")
     suspend fun getOompaLoompaDetails(
         @Path("id")
         id:Int
