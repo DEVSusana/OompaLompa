@@ -33,7 +33,7 @@ fun oompaListItem(navController: NavController, oompaDetail: OompaDetail, index:
                 modifier = Modifier
                     .padding(5.dp)
                     .fillMaxWidth()
-                    .clickable { navController.navigate("details") },
+                    .clickable { navController.navigate("details/${oompaDetail.id}") },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 oompaImage(oompaDetail = oompaDetail)

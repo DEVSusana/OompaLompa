@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                         oompaList = response.data.results
                         setContent {
                             val navController = rememberNavController()
-                            NavigationComponent(navController = navController, oompaList = oompaList)
+                            NavigationComponent(navController = navController, oompaList = oompaList, viewModel)
                         }
                     }
                 }
