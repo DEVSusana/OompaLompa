@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.oompa.loompa.data.model.OompaDetail
+import kotlinx.coroutines.Job
 
 @Composable
 fun oompaImage(oompaDetail: OompaDetail) {

@@ -34,8 +34,21 @@ class OompaRepositoryImpl @Inject constructor(
         return Resource.Error(response.message())
     }
 
-    override suspend fun getOompaDetail(id: Int): Response<OompaDetail> {
-       return oompaRemoteDataSource.getOompaLoompaDetails(id)
+    override suspend fun getOompaDetail(
+        id: Int
+    ): Resource<OompaDetail> {
+       return responseToResourceDetail(
+           oompaRemoteDataSource.getOompaLoompaDetails(id)
+       )
+    }
+
+    private fun responseToResourceDetail(response: Response<OompaDetail>):Resource<OompaDetail>{
+        if(response.isSuccessful){
+            response.body()?.let {result->
+                return Resource.Success(result)
+            }
+        }
+        return Resource.Error(response.message())
     }
 
     override fun getOompaList(): Flow<List<OompaDetail>> {

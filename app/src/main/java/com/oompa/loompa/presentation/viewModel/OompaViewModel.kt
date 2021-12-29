@@ -77,21 +77,21 @@ class OompaViewModel(
 
     }
 
-    val getDetailOompa: MutableLiveData<Response<OompaDetail>> = MutableLiveData()
+    val getDetailOompa: MutableLiveData<Resource<OompaDetail>> = MutableLiveData()
 
     fun getOompaLoompaDetail(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-     //   getDetailOompa.postValue(Resource.Loading())
+        getDetailOompa.postValue(Resource.Loading())
         try {
             if (isNetworkAvailable(app)) {
 
                 val apiResult = getDetailsOompaUseCase.execute(id)
                 getDetailOompa.postValue(apiResult)
             } else {
-           //     getDetailOompa.postValue(Resource.Error("Internet is not available"))
+                getDetailOompa.postValue(Resource.Error("Internet is not available"))
             }
 
         } catch (e: Exception) {
-          //  getDetailOompa.postValue(Resource.Error(e.message.toString()))
+            getDetailOompa.postValue(Resource.Error(e.message.toString()))
         }
 
     }
@@ -102,7 +102,7 @@ class OompaViewModel(
         saveDetailsOompaUseCase.execute(oompaDetail)
     }
 
-    fun getSaveListOompa() = liveData{
+    fun getSaveListOompa() = liveData {
         saveListOompaUseCase.execute().collect {
             emit(it)
         }

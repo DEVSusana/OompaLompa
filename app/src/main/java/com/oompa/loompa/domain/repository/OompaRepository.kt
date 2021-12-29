@@ -8,7 +8,7 @@ import retrofit2.Response
 
 interface OompaRepository {
     suspend fun getOompaList(page: Int): Resource<ApiResponse>
-    suspend fun getOompaDetail(id: Int): Response<OompaDetail>
+    suspend fun getOompaDetail(id: Int): Resource<OompaDetail>
 
     suspend fun saveOompa(oompaDetail: OompaDetail)
     suspend fun deleteOompa(oompaDetail: OompaDetail)

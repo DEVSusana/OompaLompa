@@ -6,24 +6,17 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.rememberNavController
 import com.oompa.loompa.data.Utils.Resource
 import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.domain.repository.OompaRepository
-import com.oompa.loompa.domain.usecase.*
 import com.oompa.loompa.presentation.viewModel.OompaViewModel
 import com.oompa.loompa.presentation.viewModel.OompaViewModelFactory
-import com.oompa.loompa.view.compose.displayOompaList
+import com.oompa.loompa.view.compose.DisplayOompaList
+import com.oompa.loompa.view.compose.NavigationComponent
+import com.oompa.loompa.view.compose.ShowProgressBar
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.compose.ui.Modifier
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,22 +30,23 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var repository: OompaRepository
 
-
     private lateinit var oompaList: List<OompaDetail>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[OompaViewModel::class.java]
         viewModel.getOompaLoompaList(1)
+
+
         viewModel.getListOompa.observe(this, { response ->
             when (response) {
                 is Resource.Success -> {
                     response.data?.let {
                         oompaList = response.data.results
                         setContent {
-                            Surface(color = MaterialTheme.colors.background) {
-                                displayOompaList(oompaList = oompaList)
-                            }
+                            val navController = rememberNavController()
+                            NavigationComponent(navController = navController, oompaList = oompaList)
                         }
                     }
                 }
@@ -64,9 +58,11 @@ class MainActivity : ComponentActivity() {
                 }
 
                 is Resource.Loading -> {
-                   setContent {
-                       ShowProgressBar()
-                   }
+                    setContent {  
+                        ShowProgressBar()
+                    }
+                    
+                    
                 }
 
             }
@@ -76,14 +72,3 @@ class MainActivity : ComponentActivity() {
 
 }
 
-
-@Composable
-fun ShowProgressBar() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator()
-    }
-}

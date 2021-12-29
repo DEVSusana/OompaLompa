@@ -14,10 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.oompa.loompa.data.model.OompaDetail
 
 @Composable
-fun oompaListItem(oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onClick: (Int) -> Unit){
+fun oompaListItem(navController: NavController, oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onClick: (Int) -> Unit){
     val backgroundColor =
         if (index == selectedIndex) MaterialTheme.colors.primary else MaterialTheme.colors.background
     Card(
@@ -32,7 +33,7 @@ fun oompaListItem(oompaDetail: OompaDetail, index: Int, selectedIndex: Int, onCl
                 modifier = Modifier
                     .padding(5.dp)
                     .fillMaxWidth()
-                    .clickable { onClick(index) },
+                    .clickable { navController.navigate("details") },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 oompaImage(oompaDetail = oompaDetail)
