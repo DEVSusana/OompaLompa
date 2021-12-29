@@ -89,6 +89,7 @@ class OompaViewModel(
         try {
             if (isNetworkAvailable(app)) {
 
+
                 val apiResult = getDetailsOompaUseCase.execute(id)
                 getDetail.value = apiResult
                 getDetailOompa.postValue(apiResult)
