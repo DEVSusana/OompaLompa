@@ -13,7 +13,6 @@ import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.domain.repository.OompaRepository
 import com.oompa.loompa.presentation.viewModel.OompaViewModel
 import com.oompa.loompa.presentation.viewModel.OompaViewModelFactory
-import com.oompa.loompa.view.compose.DisplayOompaList
 import com.oompa.loompa.view.compose.NavigationComponent
 import com.oompa.loompa.view.compose.ShowProgressBar
 import dagger.hilt.android.AndroidEntryPoint

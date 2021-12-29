@@ -2,21 +2,17 @@ package com.oompa.loompa.view.compose
 
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
 import com.oompa.loompa.data.Utils.Resource
 import com.oompa.loompa.data.model.OompaDetail
 import com.oompa.loompa.presentation.viewModel.OompaViewModel
-import com.oompa.loompa.view.MainActivity
 
 @Composable
 fun OompaDetailView(oompaViewModel: OompaViewModel, id: Int) {
