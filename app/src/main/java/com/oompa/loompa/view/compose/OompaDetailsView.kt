@@ -23,9 +23,8 @@ fun OompaDetailView(oompaViewModel: OompaViewModel, id: Int) {
 
     when (oompaViewModel.getDetail.value) {
         is Resource.Success -> {
-            val oompaDetail by remember {
-                mutableStateOf(oompaViewModel.getDetail.value?.data)
-            }
+            val oompaDetail = oompaViewModel.getDetail.value?.data
+
             oompaViewModel.getDetail.value?.data.let {
                 Row(
                     modifier = Modifier
@@ -36,13 +35,13 @@ fun OompaDetailView(oompaViewModel: OompaViewModel, id: Int) {
                     oompaDetail?.let { oompaImage(it) }
                     Column {
                         if (oompaDetail != null) {
-                            Text(text = oompaDetail!!.firstName, style = MaterialTheme.typography.h3)
+                            Text(text = oompaDetail.firstName, style = MaterialTheme.typography.h3)
                             Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = oompaDetail!!.lastName, style = MaterialTheme.typography.h5)
+                            Text(text = oompaDetail.lastName, style = MaterialTheme.typography.h5)
                             Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = oompaDetail!!.country, style = MaterialTheme.typography.h5)
+                            Text(text = oompaDetail.country, style = MaterialTheme.typography.h5)
                             Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = oompaDetail!!.profession, style = MaterialTheme.typography.h5)
+                            Text(text = oompaDetail.profession, style = MaterialTheme.typography.h5)
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                     }
@@ -60,6 +59,7 @@ fun OompaDetailView(oompaViewModel: OompaViewModel, id: Int) {
             ShowProgressBar()
         }
 
+        else -> {}
     }
 
 }
