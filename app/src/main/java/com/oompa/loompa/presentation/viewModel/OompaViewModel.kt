@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -77,8 +78,10 @@ class OompaViewModel(
 
     }
 
-    private val getDetailOompa: MutableLiveData<Resource<OompaDetail>> = MutableLiveData()
-    val getDetail get() = getDetailOompa
+    private val getDetailOompa: MutableLiveData<Resource<OompaDetail>> by lazy{
+        MutableLiveData<Resource<OompaDetail>>()
+    }
+    val getDetail : LiveData<Resource<OompaDetail>> get() = getDetailOompa
 
     fun getOompaLoompaDetail(id: Int) = viewModelScope.launch(Dispatchers.IO) {
         getDetailOompa.postValue(Resource.Loading())

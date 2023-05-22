@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -19,11 +21,14 @@ import com.oompa.loompa.presentation.viewModel.OompaViewModel
 
 @Composable
 fun OompaDetailView(oompaViewModel: OompaViewModel, id: Int) {
-    oompaViewModel.getOompaLoompaDetail(id)
+    LaunchedEffect(id){
+        oompaViewModel.getOompaLoompaDetail(id)
+    }
+    val oompaDetailObserve = oompaViewModel.getDetail.observeAsState()
 
-    when (oompaViewModel.getDetail.value) {
+    when (oompaDetailObserve.value) {
         is Resource.Success -> {
-            val oompaDetail = oompaViewModel.getDetail.value?.data
+            val oompaDetail = oompaDetailObserve.value?.data
 
             oompaViewModel.getDetail.value?.data.let {
                 Row(
